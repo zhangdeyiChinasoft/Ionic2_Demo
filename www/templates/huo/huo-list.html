@@ -1,0 +1,50 @@
+<ion-view view-title="煤炭货源">
+    <ion-nav-buttons side="right">
+        <div class="shaixuan" ng-click="openSearch()">
+            <i class="icon iconfont icon-shaixuan"></i>
+        </div>
+    </ion-nav-buttons>
+    <ion-content class="yuan">
+        <ion-refresher pulling-text="下拉刷新..." on-refresh="doRefresh(loadAddress,downloadAddress)">
+        </ion-refresher>
+        <div ng-if="showloading" style="margin-top:60px; text-align: center">
+<ion-spinner icon="ios" style="height: 60px; width: 60px;"></ion-spinner>
+</div>
+<ion-list>
+    <div ng-repeat="huo in huos">
+        <ion-item ng-click="togglePartner(huo)">
+            <div class="content title">
+                <p>{{huo.Title}}</p>
+            </div>
+            <div class="content bb">
+                <span class="zhuang">装</span> <span class="che-address">{{huo.LoadAddress}}</span>
+                <span class="xie">卸</span> <span class="che-address">{{huo.DownloadAddress}}</span>
+            </div>
+            <div class="content">
+                <span class="valid">有效日期</span>
+                <span class="valid-time">{{huo.ValidStartDate}} ~ {{huo.ValidEndDate}}</span>
+            </div>
+        </ion-item>
+    </div>
+</ion-list>
+<p style="text-align:center;" ng-if="!moreDataCanBeLoaded()">{{message}}</p>
+<ion-infinite-scroll icon="ion-load-d" on-infinite="loadMore()" distance="10%" ng-show="!showloading" ng-if="moreDataCanBeLoaded()">
+</ion-infinite-scroll>
+</ion-content>
+<div ng-if="isShowSearch" class="xm-search">
+    <div class="show-search">
+        <label class="kuai-search">
+                <span>装&nbsp;&nbsp;车&nbsp;&nbsp;地</span>
+                <input type="text" ng-model="loadAddress" placeholder="">
+            </label>
+        <label class="kuai-search">
+                <span>卸&nbsp;&nbsp;车&nbsp;&nbsp;地</span>
+                <input type="text" ng-model="downloadAddress" placeholder="">
+            </label>
+    </div>
+    <div class="search-button">
+        <button class="btn-close" ng-click="closeSearch()">关闭</button>
+        <button class="btn-submit" ng-click='search(loadAddress,downloadAddress)'>搜索</button>
+    </div>
+</div>
+</ion-view>

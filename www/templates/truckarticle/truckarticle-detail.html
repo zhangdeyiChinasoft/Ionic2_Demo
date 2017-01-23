@@ -1,0 +1,27 @@
+<ion-view view-title="文章详情">
+    <style>
+        img {
+            width: 100%;
+        }
+    </style>
+    <ion-content>
+        <div class="detailTitleDiv" ng-if="loadedDetail">
+            <div class="title txtDiv">
+                <h4 class="bold"><b>{{truckArticleDetail.Title}}</b></h4>
+            </div>
+            <div class="propertyDiv">
+
+                <div>
+                    <span class="propertyTxt">{{truckArticleDetail.Author}}</span> &nbsp; &nbsp;
+                    <span class="propertyTxt ">{{truckArticleDetail.PublishedOn.substr(0,10)}}</span>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="detailContentDiv" ng-if="loadedDetail">
+            <div class="txtDiv" ng-bind-html="truckArticleDetail.HtmlContent"> </div>
+        </div>
+    </ion-content>
+</ion-view>

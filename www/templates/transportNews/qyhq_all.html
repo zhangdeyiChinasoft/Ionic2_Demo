@@ -1,0 +1,59 @@
+<ion-view view-title="汽运价格">
+
+    <ion-content>
+        <!-- ng-switch-default -->
+
+        <ion-refresher pulling-text="下拉刷新..." on-refresh="doRefresh()">
+        </ion-refresher>
+
+        <div ng-if="showloading" style="margin-top:60px; text-align: center">
+            <ion-spinner icon="ios" style="height: 60px; width: 60px;"></ion-spinner>
+        </div>
+
+
+        <div class="share">
+            <div class="list">
+                <a class="item tit" href="#">
+                    <span style="color: blue">{{location}}汽运费（元/吨）</span>
+                </a>
+                <a class="item" href="#product/{{::product.ID}}" ng-repeat="motoprice in motoprices.data">
+                    <div class="row">
+                        <div class="col-75 br">
+                            <p class="title bb">{{motoprice.StartingPoint}} <span>→</span> {{motoprice.FinishingPoint}}</p>
+                            <p class="summary">
+                                <span>
+                                        <i class="icon iconfont icon-rili"></i>
+                                        {{motoprice.Title}}
+                                    </span>
+                                <span style="margin-left:10px;">
+                                        <i class="icon iconfont icon-dingwei"></i>
+                                        起始省份：{{motoprice.RegionName}}
+                                    </span>
+                            </p>
+                            <!--<dd>浏览{{diss.fid}}次</dd>-->
+                        </div>
+                        <div class="col-25" ng-class="{true: 'green', false: 'red'}[{{ motoprice.Chain < 0}}]">
+                            <span class="chain">{{motoprice.Chain}}%
+                                <i class="icon " 
+                                    ng-class="{'ion-arrow-up-c':motoprice.Chain>0,'ion-arrow-down-c':motoprice.Chain<0,'ion-minus-round': motoprice.Chain==0 }"></i>
+                            </span>
+                            <span class="yen">¥{{motoprice.Freight}}</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <ion-footer-bar align-title="center" ng-show="!moreDataCanBeLoaded()">
+            <div class="footerContentDiv">
+                <span class="more">
+                        已加载全部数据
+                    </span>
+            </div>
+        </ion-footer-bar>
+        
+        <ion-infinite-scroll icon="ion-load-d" on-infinite="loadMore()" distance="1%" ng-if="moreDataCanBeLoaded()" ng-show="!showloading"></ion-infinite-scroll>
+
+
+    </ion-content>
+</ion-view>

@@ -1,0 +1,31 @@
+<ion-view view-title="详情">
+    <ion-content>
+        <div class="detailTitleDiv" ng-if="loadedDetail">
+            <div class="title txtDiv">
+                <h4 class="bold"><b>{{cheDetail.Title}}</b></h4>
+                <div class="bb" style="padding-bottom:10px;">
+                    <span class="valid">发布日期</span>
+                    <span class="valid-time">{{cheDetail.LastTime}}</span>
+                </div>
+                <div class="content bb">
+                    <i class="icon iconfont icon-user1 hui"></i><span>{{cheDetail.Contact}}</span>
+                    <i class="icon iconfont icon-dianhua hui" style="margin-left:10px;"></i><span>{{cheDetail.ContactPhone}}</span>
+                </div>
+                <div class="yuan-detail">
+                    <p>
+                        车牌号：{{cheDetail.CheNum}}
+                        <br> 常驻地：{{cheDetail.BaseAddress}}
+                        <br> 常跑路线：{{cheDetail.OftenLine}}
+                        <br> 车辆类型：{{cheDetail.CheType}}
+                        <br> 载重量(吨)：<span class="orange">{{cheDetail.Capacity}}</span>
+                    </p>
+                </div>
+                <div style="height:5rem"></div>
+                <div>
+                    <a ng-show="true" href="tel:{{cheDetail.ContactPhone}}" class="button button-block button-positive">{{cheDetail.ContactPhone}}  电话联系</a>
+                    <a ng-show="!IsAuthed" ng-click="openModal('register')" class="button button-block button-positive">点击注册  查看联系电话</a>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,89 @@
+<ion-view view-title="实时路况">
+	<ion-content>
+		<ion-list>
+			<ion-refresher pulling-text="下拉刷新..." ng-if="!moreLoading " on-refresh="refresh()"></ion-refresher>
+			<div ng-repeat="d in data">
+				<div class="card yuan" ng-click="togglePartner(d)" ng-class="{active: isPartnerShown(d)}">
+					<div class="item">
+						<div class="title">
+							<p class="disc">{{d.Title}}</p>
+						</div>
+						<div class="content-2">
+							<ul class="luxian">
+								<li><span></span>
+									<p class="disc">秦皇岛皇岛皇岛</p>
+								</li>
+								<li><span></span>
+									<p class="disc">秦皇岛皇岛皇岛</p>
+								</li>
+								<li><span></span>
+									<p class="disc">秦皇岛皇岛皇岛</p>
+								</li>
+								<li><span></span>
+									<p class="disc">秦皇岛皇岛皇岛</p>
+								</li>
+								<li><span></span>
+									<p class="disc">秦皇岛皇岛皇岛</p>
+								</li>
+							</ul>
+						</div>
+						<div ng-repeat="nd in d">
+							<span class="propertyTxt">{{nd.Name}}</span>
+						</div>
+						<div class="content">
+							<div class="row fenlei">
+								<div class="col-50 disc">
+									<span class="icon-width"><i class="icon iconfont icon-jiayouzhan orange"></i></span>
+									<span>加油站 {{d.Petrols.length}}</span>
+								</div>
+								<div class="col-50 disc">
+									<span class="icon-width"><i class="icon iconfont icon-QCjiancha blue"></i></span>
+									<span>检查站 {{che.Capacity}}</span>
+								</div>
+							</div>
+							<div class="row fenlei">
+								<div class="col-50 disc">
+									<span class="icon-width"><i class="icon iconfont icon-fuwu1 red"></i></span>
+									<span>服务站 {{d.Services.length}}</span>
+								</div>
+								<div class="col-50 disc">
+									<span class="icon-width"><i class="icon iconfont icon-shoufeidanju green"></i></span>
+									<span>收费站 {{d.TollBooths.length}}</span>
+								</div>
+							</div>
+						</div>
+						<div class="content" style="margin-top: -0.8rem;">
+							<div class="gk-tu"><span class="gk-icon">路线<br>概况</span></div>
+							<p class="gk-wen">{{d.ProfileText}}</p>
+							<div class="clearfix"></div>
+						</div>
+					</div>
+				</div>
+				<!--<ion-item ng-click="togglePartner(d)" ng-class="{active: isPartnerShown(d)}">
+                    <div class="title bold">
+                        <p>{{d.Title}}</p>
+                    </div>
+                    <div ng-repeat="nd in d">
+                        <span class="propertyTxt">{{nd.Name}}</span>
+                    </div>
+                    <div>
+                        <span>加油站</span>&nbsp;<span>{{d.Petrols.length}}</span>
+                    </div>
+                    <div>
+                        <span>服务站</span>&nbsp;<span>{{d.Services.length}}</span>
+                    </div>
+                    <div>
+                        <span>检查站</span>&nbsp;<span>{{d.CheckPoints.length}}</span>
+                    </div>
+                    <div>
+                        <span>收费站</span>&nbsp;<span>{{d.TollBooths.length}}</span>
+                    </div>
+                    <div>
+                        <span>路线概况</span>&nbsp;<span>{{d.ProfileText}}</span>
+                    </div>
+                </ion-item>-->
+			</div>
+		</ion-list>
+		<ion-infinite-scroll ng-if="!moreLoading " on-infinite="loadMore()" distance="-1%"></ion-infinite-scroll>
+	</ion-content>
+</ion-view>

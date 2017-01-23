@@ -1,0 +1,277 @@
+<!-- <section class="tabs-top tabs-background-stable">
+  <div class="tab-nav tabs">
+    <a class="tab-item"  >
+      <span class="tab-title">汽运价格</span>
+    </a>
+    <a class="tab-item"  >
+      <span class="tab-title">重卡新闻</span>
+    </a>
+  </div>
+</section> -->
+
+<ion-view view-title="汽运资讯" ng-switch on="productShow">
+    <div class="bar bar-subheader btabs re-button">
+        <div class="button-bar" style="border-bottom: 1px solid #cacaca;">
+            <a class="col button re-button" ng-class="{'bt-active':productShow==1||!productShow}" ng-click="showProduct(1)" style="line-height: 3rem;">汽运价格</a>
+            <a class="col button re-button" ng-class="{'bt-active':productShow==2}" ng-click="showProduct(2)" style="line-height: 3rem;">重卡新闻</a>
+        </div>
+    </div>
+
+    <ion-content class="has-subheader" overflow-scroll="false" ng-switch-default lazy-scroll>
+        <!-- ng-switch-default -->
+        <!-- <ion-list>
+             <ion-item class="item-remove-animate " ng-repeat="motonew in motonews" type="item-text-wrap" >
+                <h2>{{motonew.Title}}</h2>
+                <p class="summary">
+                  <span >{{motonew.Author}}</span>
+                  <span>{{motonew.NewsDate | date:'yyyy-MM-dd'}}</span>   
+                </p>         
+            </ion-item>
+        </ion-list> -->
+
+
+
+        <div class="share">
+            <div class="list">
+                <a class="item tit" ng-click="toggleqyhq('SY')">
+                    <span>三亚地区汽运费（元/吨）</span>
+                    <i class="icon icon-zhuan" ng-class="showSY ? 'ion-ios-arrow-up' : 'ion-ios-arrow-down'"></i>
+                </a>
+                <div ng-show="isqyhqShown('SY')">
+                    <a class="item" href="#product/{{::product.ID}}" ng-repeat="motoprice in motopricesSY">
+                        <div class="row">
+                            <div class="col-75 br">
+                                <p class="title bb">{{motoprice.StartingPoint}} <span>→</span> {{motoprice.FinishingPoint}}</p>
+                                <p class="summary">
+                                    <span>
+                                        <i class="icon iconfont icon-rili"></i>
+                                        {{motoprice.Title}}
+                                    </span>
+                                    <span style="margin-left:10px;">
+                                        <i class="icon iconfont icon-dingwei"></i>
+                                        起始省份：{{motoprice.RegionName}}
+                                    </span>
+                                </p>
+                                <!--<dd>浏览{{diss.fid}}次</dd>-->
+                            </div>
+                            <div class="col-25" ng-class="{true: 'green', false: 'red'}[{{ motoprice.Chain < 0}}]">
+                                <span class="chain">
+                                    {{motoprice.Chain}}% 
+                                    <i class="icon " 
+                                    ng-class="{'ion-arrow-up-c':motoprice.Chain>0,'ion-arrow-down-c':motoprice.Chain<0,'ion-minus-round': motoprice.Chain==0 }"></i>
+                                </span>
+                                <span class="yen">¥{{motoprice.Freight}}</span>
+                            </div>
+                        </div>
+                    </a>
+                    <a class="item seemore" href="#/tab/transportNews/qyhq_all/SY">
+                        <span>查看更多</span>
+                    </a>
+                </div>
+            </div>
+
+
+            <div class="list">
+                <a class="item tit" ng-click="toggleqyhq('NM')">
+                    <span>内蒙古地区汽运费（元/吨）</span>
+                    <i class="icon icon-zhuan" ng-class="showNM ? 'ion-ios-arrow-up' : 'ion-ios-arrow-down'"></i>
+                </a>
+                <div ng-show="isqyhqShown('NM')">
+                    <a class="item" href="#product/{{::product.ID}}" ng-repeat="motoprice in motopricesNM">
+                        <div class="row">
+                            <div class="col-75 br">
+                                <p class="title bb">{{motoprice.StartingPoint}} <span>→</span> {{motoprice.FinishingPoint}}</p>
+                                <p class="summary">
+                                    <span>
+                                        <i class="icon iconfont icon-rili"></i>
+                                        {{motoprice.Title}}
+                                    </span>
+                                    <span style="margin-left:10px;">
+                                        <i class="icon iconfont icon-dingwei"></i>
+                                        起始省份：{{motoprice.RegionName}}
+                                    </span>
+                                </p>
+                                <!--<dd>浏览{{diss.fid}}次</dd>-->
+                            </div>
+                            <div class="col-25" ng-class="{true: 'green', false: 'red'}[{{ motoprice.Chain < 0}}]">
+                                <span class="chain">
+                                    {{motoprice.Chain}}% 
+                                    <i class="icon " 
+                                    ng-class="{'ion-arrow-up-c':motoprice.Chain>0,'ion-arrow-down-c':motoprice.Chain<0,'ion-minus-round': motoprice.Chain==0 }"></i>
+                                </span>
+                                <span class="yen">¥{{motoprice.Freight}}</span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a class="item seemore" href="#/tab/transportNews/qyhq_all/NM">
+                        <span>查看更多</span>
+                    </a>
+                </div>
+            </div>
+
+
+            <div class="list">
+                <a class="item tit" ng-click="toggleqyhq('SX')">
+                    <span>山西地区-北方各港汽运费（元/吨）</span>
+                    <i class="icon icon-zhuan" ng-class="showSX ? 'ion-ios-arrow-up' : 'ion-ios-arrow-down'"></i>
+                </a>
+                <div ng-show="isqyhqShown('SX')">
+                    <a class="item" href="#product/{{::product.ID}}" ng-repeat="motoprice in motopricesSX">
+                        <div class="row">
+                            <div class="col-75 br">
+                                <p class="title bb">{{motoprice.StartingPoint}} <span>→</span> {{motoprice.FinishingPoint}}</p>
+                                <p class="summary">
+                                    <span>
+                                        <i class="icon iconfont icon-rili"></i>
+                                        {{motoprice.Title}}
+                                    </span>
+                                    <span style="margin-left:10px;">
+                                        <i class="icon iconfont icon-dingwei"></i>
+                                        起始省份：{{motoprice.RegionName}}
+                                    </span>
+                                </p>
+                                <!--<dd>浏览{{diss.fid}}次</dd>-->
+                            </div>
+                            <div class="col-25" ng-class="{true: 'green', false: 'red'}[{{ motoprice.Chain < 0}}]">
+                                <span class="chain">
+                                    {{motoprice.Chain}}% 
+                                    <i class="icon " 
+                                    ng-class="{'ion-arrow-up-c':motoprice.Chain>0,'ion-arrow-down-c':motoprice.Chain<0,'ion-minus-round': motoprice.Chain==0 }"></i>
+                                </span>
+                                <span class="yen">¥{{motoprice.Freight}}</span>
+                            </div>
+                        </div>
+                    </a>
+                    <a class="item seemore" href="#/tab/transportNews/qyhq_all/SX">
+                        <span>查看更多</span>
+                    </a>
+                </div>
+            </div>
+
+
+            <div class="list">
+                <a class="item tit" ng-click="toggleqyhq('SHX')">
+                    <span>陕西地区汽运费（元/吨）</span>
+                    <i class="icon icon-zhuan"  ng-class="showSHX ? 'ion-ios-arrow-up' : 'ion-ios-arrow-down'"></i>
+                </a>
+                <div ng-show="isqyhqShown('SHX')">
+                    <a class="item" href="#product/{{::product.ID}}" ng-repeat="motoprice in motopricesSHX">
+                        <div class="row">
+                            <div class="col-75 br">
+                                <p class="title bb">{{motoprice.StartingPoint}} <span>→</span> {{motoprice.FinishingPoint}}</p>
+                                <p class="summary">
+                                    <span>
+                                        <i class="icon iconfont icon-rili"></i>
+                                        {{motoprice.Title}}
+                                    </span>
+                                    <span style="margin-left:10px;">
+                                        <i class="icon iconfont icon-dingwei"></i>
+                                        起始省份：{{motoprice.RegionName}}
+                                    </span>
+                                </p>
+                                <!--<dd>浏览{{diss.fid}}次</dd>-->
+                            </div>
+                            <div class="col-25" ng-class="{true: 'green', false: 'red'}[{{ motoprice.Chain < 0}}]">
+                                <span class="chain">
+                                    {{motoprice.Chain}}% 
+                                    <i class="icon " 
+                                    ng-class="{'ion-arrow-up-c':motoprice.Chain>0,'ion-arrow-down-c':motoprice.Chain<0,'ion-minus-round': motoprice.Chain==0 }"></i>
+                                </span>
+                                <span class="yen">¥{{motoprice.Freight}}</span>
+                            </div>
+                        </div>
+                    </a>
+                    <a class="item seemore" href="#/tab/transportNews/qyhq_all/SHX">
+                        <span>查看更多</span>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+
+    </ion-content>
+
+    <ion-content class="has-subheader" ng-switch-when="2">
+        <!-- ng-switch-default -->
+
+
+
+        <!-- <ion-list>
+             <ion-item class="item-remove-animate " ng-repeat="motonew in motonews" type="item-text-wrap" >
+                <h2>{{motonew.Title}}</h2>
+                <p class="summary">
+                  <span >{{motonew.Author}}</span>
+                  <span>{{motonew.NewsDate | date:'yyyy-MM-dd'}}</span>
+                  
+                </p>
+                
+            </ion-item>
+        </ion-list> -->
+
+        <ion-refresher pulling-text="下拉刷新..." on-refresh="doRefresh()">
+        </ion-refresher>
+
+        <div ng-if="showloading" style="margin-top:60px; text-align: center">
+            <ion-spinner icon="ios" style="height: 60px; width: 60px;"></ion-spinner>
+        </div>
+
+        <ion-slide-box on-slide-changed="slideHasChanged($index)" auto-play="true" does-continue="true" slide-interval=2000 show-pager="true" pager-click="pageClick(index)" active-slide="model.activeIndex" delegate-handle="delegateHandler">
+            <ion-slide>
+                <div class="box-slider">
+                    <img src="img/cccnk.jpg">
+                </div>
+            </ion-slide>
+            <ion-slide>
+                <div class="box-slider">
+                    <img src="img/cccnz.jpg">
+                </div>
+            </ion-slide>
+            <ion-slide>
+                <div class="box-slider">
+                    <img src="img/ctjuo.jpg">
+                </div>
+            </ion-slide>
+        </ion-slide-box>
+
+
+
+
+        <div class="share zkxw">
+            <div class="list" ng-if="showloading==false">
+                <a class="item" href="#/tab/transportNews/zkxw_content/{{::motonew.Id}}" ng-repeat="motonew in motonews.data">
+                    <div class="title">
+                        <p>{{motonew.Title}} </p>
+                    </div>
+                    <div>
+                        <span class="propertyTxt">{{motonew.Author}}</span> &nbsp; &nbsp;
+                        <span class="propertyTxt">{{motonew.NewsDate | date:'yyyy-MM-dd'}}</span>
+                        <!--<dd>浏览{{diss.fid}}次</dd>-->
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <ion-footer-bar align-title="center" ng-show="!moreDataCanBeLoaded()">
+            <div class="footerContentDiv">
+                <span class="more">
+                        已加载全部数据
+                    </span>
+            </div>
+        </ion-footer-bar>
+        <!-- <span class="more" ng-if="!moreDataCanBeLoaded()">已到底部</span> -->
+
+        <ion-infinite-scroll icon="ion-load-d" on-infinite="loadMore()" distance="10%" ng-if="moreDataCanBeLoaded()">
+
+        </ion-infinite-scroll>
+
+
+
+
+    </ion-content>
+
+</ion-view>

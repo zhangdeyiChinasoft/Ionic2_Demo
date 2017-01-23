@@ -1,0 +1,35 @@
+<ion-view view-title="详情">
+    <ion-content>
+        <div class="detailTitleDiv" ng-if="loadedDetail">
+            <div class="title txtDiv">
+                <h4 class="bold"><b>{{huoDetail.Title}}</b></h4>
+                <div style="padding-bottom:5px;">
+                    <span class="valid">发布日期</span>
+                    <span class="valid-time">{{huoDetail.ValidStartDate}}</span>
+                </div>
+                <div class="bb" style="padding-bottom:10px;">
+                    <span class="valid">有效日期</span>
+                    <span class="valid-time">{{huoDetail.ValidStartDate}} ~ {{huoDetail.ValidEndDate}}</span>
+                </div>
+                <div class="yuan-detail bb">
+                    <p>
+                        货物种类：{{huoDetail.HuoType}}
+                        <br> 付款方式：{{huoDetail.PaymentWay}}
+                        <br> 需求车数：{{huoDetail.NeedCheNum}}
+                        <br> 重量：{{huoDetail.HuoWeight}}
+                        <br> 运费：<span style="color: red;">{{huoDetail.HuoPrice}}</span>
+                        <br> 装车费：{{huoDetail.LoadPrice}}
+                    </p>
+                </div>
+                <div class="clearfix" style="margin-top:15px;">
+                    <span class="zhuang">装</span>
+                    <span class="che-address" style="width:80%">{{huoDetail.LoadAddress}}</span>
+                </div>
+                <div class="clearfix">
+                    <span class="xie">卸</span>
+                    <span class="che-address" style="width:80%">{{huoDetail.DownloadAddress}}</span>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

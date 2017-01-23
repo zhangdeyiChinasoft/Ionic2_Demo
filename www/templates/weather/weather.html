@@ -1,0 +1,288 @@
+<ion-view view-title="天气预报" ng-switch on="productShow">
+    <div class="bar bar-subheader btabs re-button">
+        <div class="button-bar" style="border-bottom: 1px solid #cacaca;">
+            <a class="col button re-button" ng-class="{'bt-active':productShow==1||!productShow}" ng-click="showProduct(1)" style="line-height: 3rem;">山西省</a>
+            <a class="col button re-button" ng-class="{'bt-active':productShow==2}" ng-click="showProduct(2)" style="line-height: 3rem;">陕西省</a>
+            <a class="col button re-button" ng-class="{'bt-active':productShow==3}" ng-click="showProduct(3)" style="line-height: 3rem;">内蒙古自治区</a>
+            <a class="col button re-button" ng-class="{'bt-active':productShow==4}" ng-click="showProduct(4)" style="line-height: 3rem;">河北省</a>
+        </div>
+    </div>
+
+    <ion-content class="has-subheader" overflow-scroll="false" ng-switch-default lazy-scroll >
+        <div class="share tianqi">
+            <div class="list">
+                <a class="item"  ng-click="toggleqyhq('SX_DT')">
+                    <span style="color: #0c60ee;">大同市</span>
+                    <i class="icon icon-zhuan" ng-class="showSX_DT ? 'ion-ios-arrow-up' : 'ion-ios-arrow-down'"></i>
+                </a>
+                <div ng-show="isqyhqShown('SX_DT')">
+                    <a class="item" ng-repeat="weathers in weathersSX | filter:{ CityOrder: 1 }">
+                        
+                        <div class="row padding">
+                            <div class="address-tq">
+                                <p>&nbsp;{{weathers.PrefectureName == null ? weathers.CityName : weathers.PrefectureName}}&nbsp;&nbsp;<span class="hui-font">{{weathers.ProvinceName}}</span></p>
+                            </div>
+                        </div>
+                        <div class="row bb" style="padding-bottom:none;">
+                            <div class="wendu-tq" style="width:100%;">
+                                <div class="tq-pic">
+                                    <span class="tq-icon tq" ng-class="getweatherIcon(weathers.WeatherStateName)"></span>
+                                </div>
+                                <p class="wendu hui-font">{{weathers.Temperature}}</p>
+                                <div class="">
+                                    <span class="feng"><span class="hui-font">{{weathers.WindName}}</span> {{weathers.WindLevelName}}</span>
+                                    <span class="kqzl" ng-class="getAirQuality(weathers.AirQuality)">{{weathers.AirQuality}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+ 
+        <div class="share tianqi">
+            <div class="list">
+                <a class="item"  ng-click="toggleqyhq('SX_SZ')">
+                    <span style="color: #0c60ee;">朔州市</span>
+                    <i class="icon icon-zhuan" ng-class="showSX_SZ ? 'ion-ios-arrow-up' : 'ion-ios-arrow-down'"></i>
+                </a>
+                <div ng-show="isqyhqShown('SX_SZ')">
+                    <a class="item" ng-repeat="weathers in weathersSX | filter:{ CityOrder: 2 }">
+                        
+                        <div class="row padding">
+                            <div class="address-tq">
+                                <p>&nbsp;{{weathers.PrefectureName == null ? weathers.CityName : weathers.PrefectureName}}&nbsp;&nbsp;<span class="hui-font">{{weathers.ProvinceName}}</span></p>
+                            </div>
+                        </div>
+                        <div class="row bb" style="padding-bottom:none;">
+                            <div class="wendu-tq" style="width:100%;">
+                                <div class="tq-pic">
+                                    <span class="tq-icon tq" ng-class="getweatherIcon(weathers.WeatherStateName)"></span>
+                                </div>
+                                <p class="wendu hui-font">{{weathers.Temperature}}</p>
+                                <div class="">
+                                    <span class="feng"><span class="hui-font">{{weathers.WindName}}</span> {{weathers.WindLevelName}}</span>
+                                    <span class="kqzl" ng-class="getAirQuality(weathers.AirQuality)">{{weathers.AirQuality}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="share tianqi">
+            <div class="list">
+                <a class="item"  ng-click="toggleqyhq('SX_QT')">
+                    <span style="color: #0c60ee;">其他城市</span>
+                    <i class="icon icon-zhuan" ng-class="showSX_QT ? 'ion-ios-arrow-up' : 'ion-ios-arrow-down'"></i>
+                </a>
+                <div ng-show="isqyhqShown('SX_QT')">
+                    <a class="item" ng-repeat="weathers in weathersSX | filter: weatherFilterSX">
+                        
+                        <div class="row padding">
+                            <div class="address-tq">
+                                <p>&nbsp;{{weathers.PrefectureName == null ? weathers.CityName : weathers.PrefectureName}}&nbsp;&nbsp;<span class="hui-font">{{weathers.ProvinceName}}</span></p>
+                            </div>
+                        </div>
+                        <div class="row bb" style="padding-bottom:none;">
+                            <div class="wendu-tq" style="width:100%;">
+                                <div class="tq-pic">
+                                    <span class="tq-icon tq" ng-class="getweatherIcon(weathers.WeatherStateName)"></span>
+                                </div>
+                                <p class="wendu hui-font">{{weathers.Temperature}}</p>
+                                <div class="">
+                                    <span class="feng"><span class="hui-font">{{weathers.WindName}}</span> {{weathers.WindLevelName}}</span>
+                                    <span class="kqzl" ng-class="getAirQuality(weathers.AirQuality)">{{weathers.AirQuality}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+    </ion-content>
+
+    <ion-content class="has-subheader" ng-switch-when="2">
+        
+        <div class="share tianqi">
+            <div class="list">
+                <a class="item"  ng-click="toggleqyhq('SHX_YL')">
+                    <span style="color: #0c60ee;">榆林市</span>
+                    <i class="icon icon-zhuan" ng-class="showSHX_YL ? 'ion-ios-arrow-up' : 'ion-ios-arrow-down'"></i>
+                </a>
+                <div ng-show="isqyhqShown('SHX_YL')">
+                    <a class="item" ng-repeat="weathers in weathersSHX | filter:{ CityOrder: 1 }"">
+                        
+                        <div class="row padding">
+                            <div class="address-tq">
+                                <p>&nbsp;{{weathers.PrefectureName == null ? weathers.CityName : weathers.PrefectureName}}&nbsp;&nbsp;<span class="hui-font">{{weathers.ProvinceName}}</span></p>
+                            </div>
+                        </div>
+                        <div class="row bb" style="padding-bottom:none;">
+                            <div class="wendu-tq" style="width:100%;">
+                                <div class="tq-pic">
+                                    <span class="tq-icon tq" ng-class="getweatherIcon(weathers.WeatherStateName)"></span>
+                                </div>
+                                <p class="wendu hui-font">{{weathers.Temperature}}</p>
+                                <div class="">
+                                    <span class="feng"><span class="hui-font">{{weathers.WindName}}</span> {{weathers.WindLevelName}}</span>
+                                    <span class="kqzl" ng-class="getAirQuality(weathers.AirQuality)">{{weathers.AirQuality}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="share tianqi">
+            <div class="list">
+                <a class="item"  ng-click="toggleqyhq('SHX_QT')">
+                    <span style="color: #0c60ee;">其他城市</span>
+                    <i class="icon icon-zhuan" ng-class="showSHX_QT ? 'ion-ios-arrow-up' : 'ion-ios-arrow-down'"></i>
+                </a>
+                <div ng-show="isqyhqShown('SHX_QT')">
+                    <a class="item" ng-repeat="weathers in weathersSHX | filter: weatherFilterSHX">
+                        
+                        <div class="row padding">
+                            <div class="address-tq">
+                                <p>&nbsp;{{weathers.PrefectureName == null ? weathers.CityName : weathers.PrefectureName}}&nbsp;&nbsp;<span class="hui-font">{{weathers.ProvinceName}}</span></p>
+                            </div>
+                        </div>
+                        <div class="row bb" style="padding-bottom:none;">
+                            <div class="wendu-tq" style="width:100%;">
+                                <div class="tq-pic">
+                                    <span class="tq-icon tq" ng-class="getweatherIcon(weathers.WeatherStateName)"></span>
+                                </div>
+                                <p class="wendu hui-font">{{weathers.Temperature}}</p>
+                                <div class="">
+                                    <span class="feng"><span class="hui-font">{{weathers.WindName}}</span> {{weathers.WindLevelName}}</span>
+                                    <span class="kqzl" ng-class="getAirQuality(weathers.AirQuality)">{{weathers.AirQuality}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+    </ion-content>
+
+
+    <ion-content class="has-subheader" ng-switch-when="3">
+        
+        <div class="share tianqi">
+            <div class="list">
+                <a class="item"  ng-click="toggleqyhq('NM_ERDS')">
+                    <span style="color: #0c60ee;">鄂尔多斯市</span>
+                    <i class="icon icon-zhuan" ng-class="showNM_ERDS ? 'ion-ios-arrow-up' : 'ion-ios-arrow-down'"></i>
+                </a>
+                <div ng-show="isqyhqShown('NM_ERDS')">
+                    <a class="item" ng-repeat="weathers in weathersNM | filter:{ CityOrder: 1 }">
+                        
+                        <div class="row padding">
+                            <div class="address-tq">
+                                <p>&nbsp;{{weathers.PrefectureName == null ? weathers.CityName : weathers.PrefectureName}}&nbsp;&nbsp;<span class="hui-font">{{weathers.ProvinceName}}</span></p>
+                            </div>
+                        </div>
+                        <div class="row bb" style="padding-bottom:none;">
+                            <div class="wendu-tq" style="width:100%;">
+                                <div class="tq-pic">
+                                    <span class="tq-icon tq" ng-class="getweatherIcon(weathers.WeatherStateName)"></span>
+                                </div>
+                                <p class="wendu hui-font">{{weathers.Temperature}}</p>
+                                <div class="">
+                                    <span class="feng"><span class="hui-font">{{weathers.WindName}}</span> {{weathers.WindLevelName}}</span>
+                                    <span class="kqzl" ng-class="getAirQuality(weathers.AirQuality)">{{weathers.AirQuality}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="share tianqi">
+            <div class="list">
+                <a class="item"  ng-click="toggleqyhq('NM_QT')">
+                    <span style="color: #0c60ee;">其他城市</span>
+                    <i class="icon icon-zhuan" ng-class="showNM_QT ? 'ion-ios-arrow-up' : 'ion-ios-arrow-down'"></i>
+                </a>
+                <div ng-show="isqyhqShown('NM_QT')">
+                    <a class="item" ng-repeat="weathers in weathersNM | filter: weatherFilterSX">
+                        
+                        <div class="row padding">
+                            <div class="address-tq">
+                                <p>&nbsp;{{weathers.PrefectureName == null ? weathers.CityName : weathers.PrefectureName}}&nbsp;&nbsp;<span class="hui-font">{{weathers.ProvinceName}}</span></p>
+                            </div>
+                        </div>
+                        <div class="row bb" style="padding-bottom:none;">
+                            <div class="wendu-tq" style="width:100%;">
+                                <div class="tq-pic">
+                                    <span class="tq-icon tq" ng-class="getweatherIcon(weathers.WeatherStateName)"></span>
+                                </div>
+                                <p class="wendu hui-font">{{weathers.Temperature}}</p>
+                                <div class="">
+                                    <span class="feng"><span class="hui-font">{{weathers.WindName}}</span> {{weathers.WindLevelName}}</span>
+                                    <span class="kqzl" ng-class="getAirQuality(weathers.AirQuality)">{{weathers.AirQuality}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+    </ion-content>
+
+
+
+    <ion-content class="has-subheader" ng-switch-when="4">
+        <div class="share tianqi">
+            <div class="list">
+                <a class="item"  ng-click="toggleqyhq('HB_QT')">
+                    <span style="color: #0c60ee;">其他城市</span>
+                    <i class="icon icon-zhuan" ng-class="showHB_QT ? 'ion-ios-arrow-up' : 'ion-ios-arrow-down'"></i>
+                </a>
+                <div ng-show="isqyhqShown('HB_QT')">
+                    <a class="item" ng-repeat="weathers in weathersHB">
+                        
+                        <div class="row padding">
+                            <div class="address-tq">
+                                <p>&nbsp;{{weathers.PrefectureName == null ? weathers.CityName : weathers.PrefectureName}}&nbsp;&nbsp;<span class="hui-font">{{weathers.ProvinceName}}</span></p>
+                            </div>
+                        </div>
+                        <div class="row bb" style="padding-bottom:none;">
+                            <div class="wendu-tq" style="width:100%;">
+                                <div class="tq-pic">
+                                    <span class="tq-icon tq" ng-class="getweatherIcon(weathers.WeatherStateName)"></span>
+                                </div>
+                                <p class="wendu hui-font">{{weathers.Temperature}}</p>
+                                <div class="">
+                                    <span class="feng"><span class="hui-font">{{weathers.WindName}}</span> {{weathers.WindLevelName}}</span>
+                                    <span class="kqzl" ng-class="getAirQuality(weathers.AirQuality)">{{weathers.AirQuality}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+    </ion-content>
+
+
+
+</ion-view>

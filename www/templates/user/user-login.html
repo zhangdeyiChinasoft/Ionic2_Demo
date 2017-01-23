@@ -1,0 +1,26 @@
+<ion-view title="" class="item item-positive" style="margin: 0px; border-width: 0px;">
+  <ion-content scroll="true" class="login">
+
+    <button class="button button-icon ion-close login-close" ng-click="closeModal('login')"> </button>
+
+    <h1 class="title">会员登录</h1>
+    <div class="content">
+      <div class="input-con">
+        <label class="input-list">
+            <input type="text"  placeholder="请输入用户名">
+        </label>
+
+        <a class="input-list">
+          <input type="password" class="loginPas" placeholder="请输入密码">
+          <i class="icon ion-eye placeholder-icon" ng-click="openEye('loginPas')"></i>
+          <i class="icon ion-eye-disabled placeholder-icon hide" ng-click="closeEye('loginPas')"></i>
+        </a>
+      </div>
+
+      <div class="input-con">
+        <button class="button button-block button-login">用户登录</button>
+        <a style="background-color:transparent" class="button button-block" ng-click="openModal('register')">用户注册</a>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

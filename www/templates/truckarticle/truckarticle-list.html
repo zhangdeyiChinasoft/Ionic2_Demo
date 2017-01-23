@@ -1,0 +1,29 @@
+<ion-view view-title="爱车养护">
+    <ion-content>
+        <ion-list>
+            <div class="box-slider" style="margin-top:-1px;">
+                <img src="img/ctjuo.jpg">
+            </div>
+            <ion-refresher pulling-text="下拉刷新..." ng-if="!moreLoading " on-refresh="refresh()"></ion-refresher>
+            <div ng-repeat="d in data" class="acyh">
+                <ion-item ng-click="togglePartner(d)" ng-class="{active: isPartnerShown(d)}">
+                    <div class="title bold">
+                        <p>{{d.Title}}</p>
+                    </div>
+                    <div>
+                        <span class="propertyTxt">{{d.Author}}</span> &nbsp; &nbsp;
+                        <span class="propertyTxt">{{d.NewsDate.substr(0,10)}}</span>
+                    </div>
+                </ion-item>
+            </div>
+        </ion-list>
+        <ion-infinite-scroll ng-if="!moreLoading " on-infinite="loadMore()" distance="-1%"></ion-infinite-scroll>
+    </ion-content>
+    <!--<ion-footer-bar align-title="center" ng-if="!flagNoDate">
+        <div class="footerContentDiv">
+            <span class="more">
+                <i class="icon ion-ios-loop-strong"></i> &nbsp;下拉显示更多
+            </span>
+        </div>
+    </ion-footer-bar>-->
+</ion-view>

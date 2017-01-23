@@ -1,0 +1,63 @@
+/* 爱车养护 */
+
+.acyh {
+    width: 100%;
+    margin-top: -5px;
+}
+
+.acyh .title {
+    margin-bottom: 0.8rem;
+    margin-top: 0.1rem;
+}
+
+.acyh .title p {
+    width: 100%;
+    white-space: normal;
+    font-size: 1rem;
+    color: #333;
+    line-height: 1.5rem;
+}
+
+.more {
+    border-radius: 20px;
+    background-color: #f5f5f5;
+    vertical-align: middle;
+    text-align: center;
+    padding: 0.1rem 0.8rem;
+    font-size: 14px;
+    color: #9c9c9c;
+    overflow: hidden;
+}
+
+.propertyTxt {
+    font: 1em '宋体', Arial, Times;
+    color: grey;
+}
+
+.propertyTxt .padding {
+    padding: 2px 2px 2px 2px;
+}
+
+.footerContentDiv {
+    width: 100%;
+    text-align: center
+}
+
+.detailTitleDiv {
+    width: 100%;
+}
+
+.txtDiv {
+    width: 100%;
+    padding: 10px 15px;
+}
+
+.detailTitleDiv .propertyDiv {
+    width: 90%;
+    text-align: left;
+    margin-left: 20px;
+}
+
+.detailContentDiv {
+    width: 100%;
+}

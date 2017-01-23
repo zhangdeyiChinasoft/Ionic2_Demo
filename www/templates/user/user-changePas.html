@@ -1,0 +1,41 @@
+<ion-view title="修改密码" class="item" style="margin: 0px; border-width: 0px;">
+    <ion-content scroll="false" class="changepas">
+        <ion-header-bar class="bar-positive bar bar-header" align-title="center">
+            <button ng-click="closeModal('register')" class=" button back-button buttons button-clear header-item "><i class="icon ion-ios-arrow-back "></i> 
+                <span class="back-text "></span></button>
+            <div class="title title-center header-item ">修改密码</div>
+        </ion-header-bar>
+
+        <div class="content " style="margin-top:47px; ">
+            <div class="input-con ">
+                <a class="input-list ">
+                    <input type="password " class="registerPas " placeholder="原密码 ">
+                    <i class="icon ion-eye placeholder-icon " ng-click="openEye( 'registerPas') "></i>
+                    <i class="icon ion-eye-disabled placeholder-icon hide " ng-click="closeEye( 'registerPas') "></i>
+                </a>
+                <a class="input-list ">
+                    <input type="password " class="registerPas " placeholder="新密码 ">
+                    <i class="icon ion-eye placeholder-icon " ng-click="openEye( 'registerPas') "></i>
+                    <i class="icon ion-eye-disabled placeholder-icon hide " ng-click="closeEye( 'registerPas') "></i>
+                </a>
+                <a class="input-list ">
+                    <input type="password " class="registerRepas " placeholder="确认密码 ">
+                    <i class="icon ion-eye placeholder-icon " ng-click="openEye( 'registerRepas') "></i>
+                    <i class="icon ion-eye-disabled placeholder-icon hide " ng-click="closeEye( 'registerRepas') "></i>
+                </a>
+                <label class="input-list ">
+                    <input style="float: left " type="text " placeholder="验证码 ">
+                    <img class="input-ewm " ng-click=" " ng-src=" " />
+                </label>
+                <label class="input-list ">
+                    <input type="text " placeholder="手机验证码 ">
+                    <i ng-click="openEye(); " style="font-size: 10px;top: 1rem; ">点击获取验证码</i>
+                </label>
+            </div>
+
+            <div class="input-con ">
+                <button class="button button-block button-positive ">确认修改</button>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

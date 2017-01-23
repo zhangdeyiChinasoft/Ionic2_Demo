@@ -1,0 +1,145 @@
+<ion-view>
+  <ion-nav-bar class="bar-positive">
+    <ion-nav-back-button><i class="ion-arrow-left-c"></i> </ion-nav-back-button>
+  </ion-nav-bar>
+  <ion-nav-title>
+    {{roadStateDetail.Title}}
+  </ion-nav-title>
+  <ion-content>
+    <div class="share">
+      <div class="list">
+        <a class="item gk-bg" href="#">
+          <span style="color:#56b5f2">基本路况</span>
+        </a>
+        <div class="txtDiv">
+          <div class="content-2">
+            <ul class="luxian">
+              <li ng-repeat="nd in roadStateDetail.Nodes"><span></span>
+                <p class="disc">{{nd.Name}}</p>
+              </li>
+            </ul>
+          </div>
+          <div class="content-2 bb" style="margin-top: 0.8rem">
+            <div class="row">
+              <div class="col-50 disc"><span>起点：</span></div>
+              <div class="col-50 disc"><span>终点：</span></div>
+            </div>
+          </div>
+          <div class="content-2 bb">
+            <div class="row">
+              <div class="col-50 disc"><span>通车里程：</span></div>
+              <div class="col-50 disc"><span>设计时速：</span></div>
+            </div>
+          </div>
+          <div class="content-2">
+            <div class="row">
+              <div class="col-50 disc"><span>车道数：</span></div>
+              <div class="col-50 disc"><span>路面宽度：</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="list">
+        <a class="item gk-bg" href="#">
+          <span class="icon-width"><i class="icon iconfont icon-jiayouzhan orange"></i></span>
+          <span style="color: #56b5f2">加油站 &nbsp; {{roadStateDetail.Petrols.length}}</span>
+          <span class="fr" ng-if="petrolsColl" ng-click="CollPetrolPane()"><i class="icon ion-ios-arrow-down"></i></span>
+          <span class="fr" ng-if="!petrolsColl" ng-click="CollPetrolPane()"><i class="icon ion-ios-arrow-up"></i></span>
+        </a>
+        <div class="zhan-item content" ng-if="!petrolsColl">
+          <div ng-repeat="petrol in roadStateDetail.Petrols">
+            <div class="kuai" ng-if="petrol.Location == ''"><span></span>
+              <p>{{petrol.Name}} <br>{{petrol.Content}}</p>
+            </div>
+            <div class="kuai" ng-if="petrol.Location != ''"><span></span>
+              <p>{{petrol.Name}}-{{petrol.Location}} <br>{{petrol.Content}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="list">
+        <a class="item gk-bg" href="#">
+          <span class="icon-width"><i class="icon iconfont icon-QCjiancha blue"></i></span>
+          <span style="color: #56b5f2">检查站 &nbsp; {{roadStateDetail.CheckPoints.length}}</span>
+          <span class="fr" ng-if="checkPointColl" ng-click="CollCheckPointPane()"><i class="icon ion-ios-arrow-down"></i></span>
+          <span class="fr" ng-if="!checkPointColl" ng-click="CollCheckPointPane()"><i class="icon ion-ios-arrow-up"></i></span>
+        </a>
+        <div class="zhan-item content" ng-if="!checkPointColl">
+          <div ng-repeat="checkPoint in roadStateDetail.CheckPoints">
+            <div class="kuai" ng-if="checkPoint.Location == ''"><span></span>
+              <p>{{checkPoint.Name}} <br>{{checkPoint.Content}}</p>
+            </div>
+            <div class="kuai" ng-if="checkPoint.Location != ''"><span></span>
+              <p>{{checkPoint.Name}}-{{checkPoint.Location}} <br>{{checkPoint.Content}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="list">
+        <a class="item gk-bg" href="#">
+          <span class="icon-width"><i class="icon iconfont icon-shoufeidanju green"></i></span>
+          <span style="color: #56b5f2">收费站 &nbsp; {{roadStateDetail.TollBooths.length}}</span>
+          <span class="fr" ng-if="tollBoothColl" ng-click="CollToolBoothPane()"><i class="icon ion-ios-arrow-down"></i></span>
+          <span class="fr" ng-if="!tollBoothColl" ng-click="CollToolBoothPane()"><i class="icon ion-ios-arrow-up"></i></span>
+        </a>
+        <div class="zhan-item content" ng-if="!tollBoothColl">
+          <div ng-repeat="tollBooth in roadStateDetail.TollBooths">
+            <div class="kuai" ng-if="tollBooth.Location == ''"><span></span>
+              <p>{{tollBooth.Name}} <br>{{tollBooth.Content}}</p>
+            </div>
+            <div class="kuai" ng-if="tollBooth.Location != ''"><span></span>
+              <p>{{tollBooth.Name}}-{{tollBooth.Location}} <br>{{tollBooth.Content}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="list">
+        <a class="item gk-bg" href="#">
+          <span class="icon-width"><i class="icon iconfont icon-fuwu1 red"></i></span>
+          <span style="color: #56b5f2">服务区 &nbsp; {{roadStateDetail.Services.length}}</span>
+          <span class="fr" ng-if="servicesColl" ng-click="CollServicePane()"><i class="icon ion-ios-arrow-down"></i></span>
+          <span class="fr" ng-if="!servicesColl" ng-click="CollServicePane()"><i class="icon ion-ios-arrow-up"></i></span>
+        </a>
+        <div class="zhan-item content" ng-if="!servicesColl">
+          <div ng-repeat="service in roadStateDetail.Services">
+            <div class="kuai" ng-if="service.Location == ''"><span></span>
+              <p ng-if="service.Location == ''">{{service.Name}} <br>{{service.Content}}</p>
+            </div>
+            <div class="kuai" ng-if="petrol.Location != ''"><span></span>
+              <p ng-if="service.Location != ''">{{service.Name}}-{{service.Location}} <br>{{service.Content}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="list">
+        <a class="item gk-bg" href="#">
+          <span class="icon-width"><i class="icon iconfont icon-dingwei" style="color: blue"></i></span>
+          <span style="color: #56b5f2">线路概况 </span>
+        </a>
+        <a class="item">
+          <div class="no-overflow" ng-bind-html="roadStateDetail.ProfileHtml"> </div>
+        </a>
+      </div>
+    </div>
+    <!--<div class="detailTitleDiv" ng-if="loadedDetail">
+            <div class="title txtDiv">
+                <h4 class="bold"><b>{{truckArticleDetail.Title}}</b></h4>
+            </div>
+            <div class="propertyDiv">
+
+                <div>
+                    <span class="propertyTxt">{{truckArticleDetail.Author}}</span> &nbsp; &nbsp;
+                    <span class="propertyTxt ">{{truckArticleDetail.PublishedOn.substr(0,10)}}</span>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="detailContentDiv" ng-if="loadedDetail">
+            <div class="txtDiv" ng-bind-html="truckArticleDetail.HtmlContent"> </div>
+        </div>-->
+  </ion-content>
+</ion-view>

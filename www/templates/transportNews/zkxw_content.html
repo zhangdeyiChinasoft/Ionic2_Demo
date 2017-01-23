@@ -1,0 +1,33 @@
+<ion-view hide-tabs title="文章详情">
+    <style>
+        img {
+            width: 100%;
+        }
+    </style>
+    <ion-content on-swipe-left="onSwipeLeft()" on-swipe-right="onSwipeRight()">
+        <div ng-if="showloading">
+            <ion-spinner icon="ios"></ion-spinner>
+        </div>
+        <!--<div class="article">
+            <div class="content_title">
+                <h3>{{topic.Title}}</h3>
+                <span>{{topic.Author}} &nbsp;&nbsp;&nbsp;{{topic.PublishedOn | date:'yyyy-MM-dd'}}</span>
+            </div>
+            <div ng-bind-html="topic.HtmlContent"></div>
+        </div>-->
+        <div class="detailTitleDiv">
+            <div class="title txtDiv">
+                <h4 class="bold"><b>{{topic.Title}}</b></h4>
+            </div>
+            <div class="propertyDiv">
+                <div>
+                    <span class="propertyTxt">{{topic.Author}}</span> &nbsp; &nbsp;
+                    <span class="propertyTxt ">{{topic.PublishedOn | date:'yyyy-MM-dd'}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="detailContentDiv">
+            <div class="txtDiv" ng-bind-html="topic.HtmlContent"> </div>
+        </div>
+    </ion-content>
+</ion-view>

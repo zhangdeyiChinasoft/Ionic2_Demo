@@ -1,0 +1,38 @@
+<ion-view title="" class="item item-positive" style="margin: 0px; border-width: 0px;">
+  <ion-content scroll="true" class="login">
+    <button class="button button-icon ion-close login-close" ng-click="closeModal('register')"> </button>
+
+    <h1 class="title" style="margin: 0.5rem 0 1.5rem;">会员注册</h1>
+
+    <div class="content">
+      <div class="input-con">
+        <div class="button-bar button-positive">
+          <a class="select-btn br active">我是车主</a>
+          <a class="select-btn">我是货主</a>
+        </div>
+        <label class="input-list">
+          <input type="text" placeholder="请输入手机号">
+        </label>
+        <a class="input-list">
+          <input type="password" class="registerPas" placeholder="请输入密码">
+          <i class="icon ion-eye placeholder-icon" ng-click="openEye('registerPas')"></i>
+          <i class="icon ion-eye-disabled placeholder-icon hide" ng-click="closeEye('registerPas')"></i>
+        </a>
+        <a class="input-list">
+          <input type="password" class="registerRepas" placeholder="请重复密码">
+          <i class="icon ion-eye placeholder-icon" ng-click="openEye('registerRepas')"></i>
+          <i class="icon ion-eye-disabled placeholder-icon hide" ng-click="closeEye('registerRepas')"></i>
+        </a>
+        <label class="input-list">
+          <input type="text" placeholder="请输入手机验证码">
+          <i ng-click="openEye();" style="font-size: 10px;top: 1rem;">点击获取验证码</i>
+        </label>
+      </div>
+
+      <div class="input-con">
+        <button class="button button-block button-login">立即注册</button>
+        <a style="background-color:transparent" class="button button-block" ng-click="openModal('login')">立即登录</a>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>
